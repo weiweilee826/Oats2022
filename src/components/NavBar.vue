@@ -1,12 +1,21 @@
 <template>
   <div>
-    <b-nav>
-      <b-nav-item active>產品列表</b-nav-item>
+    <b-nav pills align="center">
+      <b-nav-item>
+        <router-link to="/products">產品列表</router-link>
+      </b-nav-item>
       <b-nav-item>最新消息</b-nav-item>
       <b-nav-item>熱銷商品</b-nav-item>
-      <b-nav-item disabled>登入</b-nav-item>
+      <b-nav-item>
+        <router-link to="/">logo</router-link>
+      </b-nav-item>
+      <b-nav-item>
+        <router-link to="/login">登入</router-link>
+      </b-nav-item>
       <b-nav-item>購物車</b-nav-item>
+      <!-- <b-nav-item disabled>購物車</b-nav-item> -->
     </b-nav>
+
     <!-- <nav class="navbar navbar-dark bg-dark flex-md-nowrap p-0 shadow">
       <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Company</a>
       <input
@@ -26,7 +35,5 @@
 </template>
 
 <script>
-export default {
-  name: "SideBar",
-};
+export default {};
 </script>
