@@ -44,7 +44,7 @@
             登入
           </button>
           <p class="mt-5 mb-3 text-muted">&copy; 2022–2023</p>
-        </form>bootstrap-logo.svg
+        </form>
     </div>
   </div>
 </template>
@@ -72,7 +72,7 @@ export default {
         if (response.data.success) {
           const { token, expired } = response.data;
           document.cookie = `hexToken=${token}; expires=${expired}`;
-          this.$router.push("/");
+          this.$router.push("/admin");
         }
       });
     },
@@ -81,17 +81,13 @@ export default {
 </script>
 
 <style scoped>
-template {
-  background-color: #ec6d4e;
-}
 .form-bg {
-  width: 50%;
-  display: -ms-flexbox;
-  display: flex;
+  display: inline-block;
   justify-content: center;
   align-items: center;
-  padding: 40px;
-  background-color: rgb(196, 217, 186);
+  padding: 20%;
+  background-color: white;
+  padding-top:100px;
 }
 
 .form-signin {
