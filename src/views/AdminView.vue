@@ -1,7 +1,7 @@
 <template>
   <div>
     <NavbarAdmin />
-    <div></div>
+    <router-view />
   </div>
 </template>
 
@@ -10,7 +10,7 @@
 import NavbarAdmin from "@/components/NavbarAdmin.vue";
 
 export default {
-  name: "Admin",
+  name: "AdminView",
   components: {
     NavbarAdmin,
   },
