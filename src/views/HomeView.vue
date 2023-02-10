@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="main1">
     <NavBar />
     <div></div>
   </div>
@@ -16,3 +16,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.main1 {
+  background-color: #ec6d4e;
+}
+</style>
