@@ -20,40 +20,31 @@ const routes = [
     component: () => import("../views/ProductsView.vue"),
   },
   {
-    //:id>被傳進來的參數
-    path: "/product/:id",
+    path: "/product",
     name: "product",
     component: () => import("../views/ProductView.vue"),
   },
   {
-    path: "/product_list",
-    name: "productList",
-    component: () => import("../views/ProductList.vue"),
-  },
-  {
-    path: "/order_list",
-    name: "orderList1",
-    component: () => import("../views/OrderList.vue"),
-  },
-  {
-    path: "/order_list/:id",
-    name: "orderList",
-    component: () => import("../views/OrderList.vue"),
-  },
-  {
-    path: "/coupon",
-    name: "couponView",
-    component: () => import("../views/CouponView.vue"),
-  },
-  {
-    path: "/cart",
-    name: "shopCart",
-    component: () => import("../views/ShopCart.vue"),
-  },
-  {
-    path: "/cart_info",
-    name: "CartInfo",
-    component: () => import("../views/CartInfo.vue"),
+    path: "/admin",
+    name: "admin",
+    component: () => import("../views/AdminView.vue"),
+    children: [
+      {
+        path: "product_list",
+        name: "productList",
+        component: () => import("../views/ProductList.vue"),
+      },
+      // {
+      //   path: "order_list",
+      //   name: "orderList",
+      //   component: () => import("../views/OrderList.vue"),
+      // },
+      // {
+      //   path: "coupon",
+      //   name: "couponView",
+      //   component: () => import("../views/CouponView.vue"),
+      // },
+    ],
   },
 ];
 const router = createRouter({

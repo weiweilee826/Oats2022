@@ -26,10 +26,10 @@ app
   .component("font-awesome-icon", FontAwesomeIcon)
   .mount("#app");
 
-//filter
+  //filter
 app.config.globalProperties.$filters = {
   currencyUSD(value) {
-    return "$" + value.toLocaleString("en-US");
+    return "$" + value;
   },
   timestampToDate(t) {
     return new Date(t).toLocaleDateString("fr-ca");
