@@ -5,18 +5,6 @@
       aria-label="Thirteenth navbar example"
     >
       <div class="container-fluid">
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarsExample11"
-          aria-controls="navbarsExample11"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
         <div class="collapse navbar-collapse d-lg-flex" id="navbarsExample11">
           <ul class="navbar-nav col-4">
             <li class="nav-item">
@@ -25,32 +13,26 @@
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">熱銷商品</a>
+              <a class="nav-link" href="#"
+                ><router-link to="/coupon">優惠券</router-link></a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link">關於我們</a>
             </li>
             <li class="nav-item">
               <a class="nav-link">最新消息</a>
             </li>
-            <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                href="#"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-                >Dropdown</a
-              >
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li>
-                  <a class="dropdown-item" href="#">Something else here</a>
-                </li>
-              </ul>
+            <li class="nav-item">
+              <a class="nav-link">店家資訊</a>
             </li>
           </ul>
 
           <a class="navbar-brand me-0 justify-content-lg-center col-4" href="#"
             ><router-link to="/"
-              ><img src="../assets/images/oats_logo.svg" alt="" /></router-link
+              ><img
+                src="../assets/images/icons/oats_logo.svg"
+                alt="" /></router-link
           ></a>
           <div
             class="d-lg-flex col-lg-4 justify-content-lg-end btn_color col-4"
@@ -59,7 +41,7 @@
               <router-link to="/login">登入</router-link>
             </button>
             <button type="button" class="btn-cart">
-              <router-link to="/"
+              <router-link to="/cart"
                 ><font-awesome-icon icon="fa-solid fa-cart-shopping" />
               </router-link>
             </button>
@@ -75,9 +57,6 @@ export default {};
 </script>
 
 <style scoped>
-body {
-  background-color: #ec6d4e;
-}
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -86,20 +65,21 @@ body {
   height: 100px;
   padding: 0 40px;
   background-color: #ec6d4e;
-  /* z-index: 99; */
+  margin-bottom: 100px;
 }
 .nav-link {
   color: white;
+  background-color: #ec6d4e;
 }
 .btn {
   color: white;
 }
-.btn-cart{
+.btn-cart {
   background-color: #fff;
-    border-radius: 100px;
-    width: 50px;
-    height: 50px;
-    border: none;
-    color:#ec6d4e
+  border-radius: 100px;
+  width: 50px;
+  height: 50px;
+  border: none;
+  color: #ec6d4e;
 }
 </style>
