@@ -1,60 +1,53 @@
 <template>
   <div>
-    <NavBar />
     <div class="form-bg">
-        <form class="form-signin" @submit.prevent="signin">
-          <!-- <img
+      <form class="form-signin" @submit.prevent="signin">
+        <!-- <img
             class="mb-4"
             src="/docs/5.2/assets/brand/bootstrap-logo.svg"
             alt=""
             width="72"
             height="57"
           /> -->
-          <h1 class="h3 mb-3 fw-normal">登入</h1>
+        <h1 class="h3 mb-3 fw-normal">登入</h1>
 
-          <div class="form-floating">
-            <input
-              type="email"
-              class="form-control"
-              id="floatingInput"
-              placeholder="name@example.com"
-              v-model="user.username"
-              required
-            />
-            <label for="floatingInput">電子郵件</label>
-          </div>
-          <div class="form-floating">
-            <input
-              type="password"
-              class="form-control"
-              id="floatingPassword"
-              placeholder="Password"
-              v-model="user.password"
-              required
-            />
-            <label for="floatingPassword">密碼</label>
-          </div>
+        <div class="form-floating">
+          <input
+            type="email"
+            class="form-control"
+            id="floatingInput"
+            placeholder="name@example.com"
+            v-model="user.username"
+            required
+          />
+          <label for="floatingInput">電子郵件</label>
+        </div>
+        <div class="form-floating">
+          <input
+            type="password"
+            class="form-control"
+            id="floatingPassword"
+            placeholder="Password"
+            v-model="user.password"
+            required
+          />
+          <label for="floatingPassword">密碼</label>
+        </div>
 
-          <div class="checkbox mb-3">
-            <label>
-              <input type="checkbox" value="remember-me" /> Remember me
-            </label>
-          </div>
-          <button class="w-100 btn btn-lg btn-primary" type="submit">
-            登入
-          </button>
-          <p class="mt-5 mb-3 text-muted">&copy; 2022–2023</p>
-        </form>
+        <div class="checkbox mb-3">
+          <label>
+            <input type="checkbox" value="remember-me" /> Remember me
+          </label>
+        </div>
+        <button class="w-100 btn btn-lg btn-primary" type="submit">登入</button>
+        <p class="mt-5 mb-3 text-muted">&copy; 2022–2023</p>
+      </form>
     </div>
   </div>
 </template>
 <script>
-import NavBar from "@/components/NavBar.vue";
-
 export default {
-  components: {
-    NavBar,
-  },
+  components: {},
   data() {
     return {
       user: {
@@ -66,13 +59,13 @@ export default {
   methods: {
     signin() {
       const api = `${process.env.VUE_APP_API}/admin/signin`;
-      console.log(this.$http.id)
+      console.log(this.$http.id);
       this.$http.post(api, this.user).then((response) => {
         console.log("456", response);
         if (response.data.success) {
           const { token, expired } = response.data;
           document.cookie = `hexToken=${token}; expires=${expired}`;
-          this.$router.push("/admin");
+          this.$router.push("/product_list");
         }
       });
     },
@@ -87,7 +80,7 @@ export default {
   align-items: center;
   padding: 20%;
   background-color: white;
-  padding-top:100px;
+  padding-top: 100px;
 }
 
 .form-signin {
