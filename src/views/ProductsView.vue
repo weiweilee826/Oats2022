@@ -3,7 +3,7 @@
     <loading :active="isLoading" />
     <div class="container content">
       <div class="container-md">
-        <h1 class="title">PRODUCTS</h1>
+        <h1 class="title ">PRODUCTS</h1>
 
         <div class="row">
           <div
@@ -81,7 +81,7 @@ img {
 }
 .title {
   /* font-family: futura-pt, sans-serif; */
-  font-weight: 300;
+  font-weight: 500;
   font-style: normal;
   font-size: 50px;
   line-height: 1;
