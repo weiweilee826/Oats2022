@@ -55,6 +55,12 @@ const routes = [
     name: "CartInfo",
     component: () => import("../views/CartInfo.vue"),
   },
+
+  {
+    path: "/customer_term",
+    name: "CustomerTerm",
+    component: () => import("../views/CustomerTerm.vue"),
+  },
 ];
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
