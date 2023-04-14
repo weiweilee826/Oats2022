@@ -3,28 +3,30 @@
     <loading :active="isLoading" />
     <div class="container content">
       <div class="container-md">
-        <h1 class="title ">PRODUCTS</h1>
+        <h1 class="title">PRODUCTS</h1>
 
         <div class="row">
-          <div
-            class="col"
-            style="width: 24%"
-            v-for="item in products"
-            :key="item.id"
-          >
-            <!-- 傳參數 params -->
-            <router-link :to="'/product/' + item.id">
-              <div class="card bg-transparent text-white border-0">
-                <img class="rounded" :src="item.imageUrl" alt="" />
-                <div class="card-body text-start">
-                  <p class="card-text">{{ item.title }}</p>
-                  <p class="card-text">
-                    {{ $filters.currencyUSD(item.price) }}
-                  </p>
+          <template v-for="item in products">
+            <div
+              class="col"
+              style="width: 24%"
+              v-if="item.is_enabled"
+              :key="item.id"
+            >
+              <!-- 傳參數 params -->
+              <router-link :to="'/product/' + item.id">
+                <div class="card bg-transparent text-white border-0">
+                  <img class="rounded" :src="item.imageUrl" alt="" />
+                  <div class="card-body text-start">
+                    <p class="card-text">{{ item.title }}</p>
+                    <p class="card-text">
+                      {{ $filters.currencyUSD(item.price) }}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            </router-link>
-          </div>
+              </router-link>
+            </div>
+          </template>
         </div>
       </div>
     </div>
@@ -79,7 +81,7 @@ export default {
 img {
   width: 228px;
 }
-.title {
+h1 {
   /* font-family: futura-pt, sans-serif; */
   font-weight: 500;
   font-style: normal;

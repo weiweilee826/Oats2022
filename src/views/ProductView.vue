@@ -114,7 +114,6 @@ export default {
   background-color: #fff;
   justify-content: space-between;
   padding: 100px 180px;
-  margin: 0 auto 60px;
 }
 .product-img {
   width: 456px;
