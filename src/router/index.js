@@ -6,13 +6,12 @@ const routes = [
     path: "/",
     name: "home",
     component: Home,
-    meta: { requiresAuth: true },
+    // meta: { requiresAuth: true },
   },
   {
     path: "/login",
     name: "login",
     component: () => import("../views/LoginView.vue"),
-    // meta: { requiresAuth: false },
   },
   {
     path: "/products",
@@ -60,6 +59,36 @@ const routes = [
     path: "/customer_term",
     name: "CustomerTerm",
     component: () => import("../views/CustomerTerm.vue"),
+  },
+  {
+    path: "/about_us",
+    name: "AboutUs",
+    component: () => import("../views/AboutUs.vue"),
+  },
+  {
+    path: "/shop_info",
+    name: "ShopInfo",
+    component: () => import("../views/ShopInfo.vue"),
+  },
+  {
+    path: "/latest_news",
+    name: "LatestNews",
+    component: () => import("../views/LatestNews.vue"),
+  },
+  {
+    path: "/news_post1",
+    name: "NewsPost1",
+    component: () => import("../views/NewsPost1.vue"),
+  },
+  {
+    path: "/news_post2",
+    name: "NewsPost2",
+    component: () => import("../views/NewsPost2.vue"),
+  },
+  {
+    path: "/news_post3",
+    name: "NewsPost3",
+    component: () => import("../views/NewsPost3.vue"),
   },
 ];
 const router = createRouter({
