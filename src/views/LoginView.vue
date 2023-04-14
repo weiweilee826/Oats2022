@@ -1,47 +1,76 @@
 <template>
   <div>
-    <div class="form-bg">
-      <form class="form-signin" @submit.prevent="signin">
-        <!-- <img
+    <div style="background-color: #ec6d4e">
+      <div class="container-fluid" style="padding-top: 50px">
+        <div class="customer-card container">
+          <h3 class="fw-bold text-center">會員登入</h3>
+          <form class="form-signin" @submit.prevent="signin">
+            <!-- <img
             class="mb-4"
             src="/docs/5.2/assets/brand/bootstrap-logo.svg"
             alt=""
             width="72"
             height="57"
           /> -->
-        <h1 class="h3 mb-3 fw-normal">登入</h1>
-
-        <div class="form-floating">
-          <input
-            type="email"
-            class="form-control"
-            id="floatingInput"
-            placeholder="name@example.com"
-            v-model="user.username"
-            required
-          />
-          <label for="floatingInput">電子郵件</label>
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label"
+                >電子郵件</label
+              >
+              <input
+                type="email"
+                class="form-control"
+                id="exampleInputEmail1"
+                aria-describedby="emailHelp"
+                v-model="user.username"
+                required
+              />
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">密碼</label>
+              <input
+                type="password"
+                class="form-control"
+                id="exampleInputPassword1"
+                v-model="user.password"
+                required
+              />
+              <div id="emailHelp" class="form-text mt-3">
+                *如果您在2022年12月31日之前註冊成為會員，請重新設置您的密碼
+              </div>
+            </div>
+            <div class="mb-3 form-check">
+              <input
+                type="checkbox"
+                class="form-check-input"
+                id="exampleCheck1"
+              />
+              <label class="form-check-label" for="exampleCheck1">記住我</label>
+            </div>
+            <div class="text-center">
+              <button
+                class="w-50 btn btn-outline-dark rounded-pill mt-5"
+                type="submit"
+              >
+                開始購物
+              </button>
+            </div>
+          </form>
         </div>
-        <div class="form-floating">
-          <input
-            type="password"
-            class="form-control"
-            id="floatingPassword"
-            placeholder="Password"
-            v-model="user.password"
-            required
-          />
-          <label for="floatingPassword">密碼</label>
+        <div class="customer-card container mt-4">
+          <h3 class="fw-bold text-center">註冊會員</h3>
+          <div class="text-center">
+            <button
+              class="w-50 btn btn-outline-dark rounded-pill mt-5"
+              type="submit"
+            >
+              立即加入
+            </button>
+          </div>
+          <div id="emailHelp" class="form-text mt-5">
+            *如果您創建了一個帳戶，方便查看您的購買歷史和管理您的訂閱（定期購買）
+          </div>
         </div>
-
-        <div class="checkbox mb-3">
-          <label>
-            <input type="checkbox" value="remember-me" /> Remember me
-          </label>
-        </div>
-        <button class="w-100 btn btn-lg btn-primary" type="submit">登入</button>
-        <p class="mt-5 mb-3 text-muted">&copy; 2022–2023</p>
-      </form>
+      </div>
     </div>
   </div>
 </template>
@@ -58,14 +87,26 @@ export default {
   },
   methods: {
     signin() {
-      const api = `${process.env.VUE_APP_API}/admin/signin`;
-      console.log(this.$http.id);
-      this.$http.post(api, this.user).then((response) => {
-        console.log("456", response);
+      const url = `${process.env.VUE_APP_API}/admin/signin`;
+      this.$http.post(url, this.user).then((response) => {
         if (response.data.success) {
           const { token, expired } = response.data;
           document.cookie = `hexToken=${token}; expires=${expired}`;
           this.$router.push("/product_list");
+          this.$store.state.adminAccess = true;
+        }
+      });
+      // this.checkUser();
+    },
+    checkUser() {
+      const api = `${process.env.VUE_APP_API}/api/user/check`;
+      this.$http.post(api).then((response) => {
+        // console.log("ccc", response.data.success);
+
+        if (response.data.success) {
+          this.$store.state.adminAccess = true;
+        } else {
+          this.$store.state.adminAccess = false;
         }
       });
     },
@@ -74,42 +115,18 @@ export default {
 </script>
 
 <style scoped>
-.form-bg {
-  display: inline-block;
-  justify-content: center;
-  align-items: center;
-  padding: 20%;
+h3 {
+  color: #ec6d4e;
+  font-weight: 900;
+}
+.customer-card {
+  width: 600px;
+  margin-top: 100px;
+  border-radius: 10px;
   background-color: white;
-  padding-top: 100px;
+  padding: 50px;
 }
-
-.form-signin {
-  width: 100%;
-  max-width: 330px;
-  padding: 15px;
-  margin: auto;
-}
-.form-signin .checkbox {
-  font-weight: 400;
-}
-.form-signin .form-control {
-  position: relative;
-  box-sizing: border-box;
-  height: auto;
-  padding: 10px;
-  font-size: 16px;
-}
-.form-signin .form-control:focus {
-  z-index: 2;
-}
-.form-signin input[type="email"] {
-  margin-bottom: -1px;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
-}
-.form-signin input[type="password"] {
-  margin-bottom: 10px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
+.progress {
+  width: 300px;
 }
 </style>
