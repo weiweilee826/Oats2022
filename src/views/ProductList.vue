@@ -4,15 +4,15 @@
       <div class="container">
         <loading v-model="isLoading" />
         <div class="text-end">
-          <button class="btn btn btn-outline-dark" @click="getProducts">
+          <button class="btn btn btn-outline-dark" @click="openModal(true)">
             新增商品
           </button>
         </div>
         <table class="table mt-4">
           <thead>
-            <tr>
+            <tr class="text-center">
               <th width="10%"></th>
-              <th width="20%">商品</th>
+              <th width="30%">商品</th>
               <th>原價</th>
               <th>售價</th>
               <th>是否啟用</th>
@@ -25,7 +25,7 @@
               <td>
                 <img class="img-fluid rounded" :src="item.imageUrl" alt="" />
               </td>
-              <td class="text-start">
+              <td>
                 {{ item.title }}
               </td>
               <td class="text-end" v-if="item.origin_price !== undefined">
@@ -37,11 +37,10 @@
                 {{ $filters.currencyUSD(item.price) }}
               </td>
               <td class="text-end" v-else>{{ $filters.currencyUSD(0) }}</td>
-              <td>
-                <span v-if="item.is_enabled" class="text-success">啟用</span>
-                <span v-else>未啟用</span>
-              </td>
-              <td>
+
+              <td v-if="item.is_enabled" class="text-center">已啟用</td>
+              <td v-else class="text-center">未啟用</td>
+              <td class="text-center">
                 <button
                   class="btn btn-outline-primary btn-sm"
                   @click="openModal(false, item)"
@@ -49,10 +48,10 @@
                   編輯
                 </button>
               </td>
-              <td>
+              <td class="text-center">
                 <button
                   class="btn btn-outline-primary btn-sm"
-                  @click="openModal(false, item)"
+                  @click="deleteProduct(item.id)"
                 >
                   刪除
                 </button>
@@ -60,8 +59,49 @@
             </tr>
           </tbody>
         </table>
+        <!-- pagination -->
+        <!-- <PagiNation></PagiNation> -->
+        <div class="text-center">
+          <nav aria-label="Page navigation example">
+            <ul class="pagination">
+              <li class="page-item" :class="{ disabled: !pagination.has_pre }">
+                <a
+                  class="page-link"
+                  @click.prevent="getProducts(pagination.current_page - 1)"
+                  href="#"
+                  aria-label="Previous"
+                >
+                  <span aria-hidden="true">&laquo;</span>
+                </a>
+              </li>
+              <li
+                class="page-item"
+                v-for="page in pagination.total_pages"
+                :key="page"
+                :class="{ active: pagination.current_page == page }"
+              >
+                <a
+                  class="page-link"
+                  @click.prevent="getProducts(page)"
+                  href="#"
+                  >{{ page }}</a
+                >
+              </li>
+              <li class="page-item" :class="{ disabled: !pagination.has_next }">
+                <a
+                  class="page-link"
+                  @click.prevent="getProducts(pagination.current_page + 1)"
+                  href="#"
+                  aria-label="Next"
+                >
+                  <span aria-hidden="true">&raquo;</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
 
-        <!-- 新增商品modal -->
+        <!-- 新增商品 modal -->
         <div
           class="modal fade"
           id="productModal"
@@ -196,18 +236,24 @@
             </div>
           </div>
         </div>
+
+        <!-- 確認刪除 modal -->
       </div>
     </div>
   </div>
 </template>
 
 <script>
+// import PagiNation from "@/components/PagiNation.vue";
+
 import { Modal } from "bootstrap";
 export default {
+  components: {
+    // PagiNation,
+  },
   data() {
     return {
       products: [],
-      pagination: {},
       tempProduct: {},
       myModal: {},
       isNew: false,
@@ -215,15 +261,18 @@ export default {
       status: {
         fileUploading: false,
       },
+      checked: true,
+      pagination: {},
     };
   },
   methods: {
-    getProducts() {
-      const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_CUSTOM_PATH}/products`;
+    getProducts(page = 1) {
+      const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_CUSTOM_PATH}/products?page=${page}`;
       this.$http.get(api).then((response) => {
         if (response.data.success) {
-          console.log(response);
+          console.log("123", response);
           this.products = response.data.products;
+          this.pagination = response.data.pagination;
         }
       });
     },
@@ -260,8 +309,6 @@ export default {
       );
     },
     uploadFile(data) {
-      // const vm = this;
-      // console.log(1, this);
       const uploadedFile = data.target.files[0];
       const formData = new FormData();
       formData.append("file-to-upload", uploadedFile);
@@ -279,6 +326,13 @@ export default {
             this.tempProduct.imageUrl = response.data.imageUrl; //<< vue 3
           }
         });
+    },
+    deleteProduct(id) {
+      const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_CUSTOM_PATH}/admin/product/${id}`;
+      this.$http.delete(url).then((response) => {
+        console.log(response);
+      });
+      this.getProducts();
     },
   },
   mounted() {
