@@ -7,14 +7,14 @@
       <div class="d-flex justify-content-start">
         <ul class="nav col d-flex">
           <li class="nav-item">
-            <a class="nav-link" href="#">常見問題</a>
+            <router-link class="nav-link" to="/">常見問題</router-link>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">服務條款</a>
+            <router-link class="nav-link" to="/">服務條款</router-link>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link">聯絡我們</a>
+            <router-link class="nav-link" to="/">聯絡我們</router-link>
           </li>
         </ul>
       </div>
@@ -59,7 +59,7 @@ export default {};
   background-color: #ec6d4e; 
 }*/
 footer {
-  padding: 40px 30px 40px 40px;
+  padding: 100px 30px 40px 40px;
   background-color: #ec6d4e;
   color: #fff;
 }
@@ -73,5 +73,9 @@ footer {
 .text-white {
   opacity: 0.5;
   font-size: 12px;
+}
+.nav-link {
+  color: white;
+  background-color: #ec6d4e;
 }
 </style>
