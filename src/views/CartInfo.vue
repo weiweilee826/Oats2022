@@ -21,14 +21,14 @@
         <div class="row">
           <div class="col-6">
             <label class="form-label mt-3">顧客姓名</label>
-            <input type="text" class="form-control" />
+            <input type="text" class="form-control" v-model="user.name" />
 
             <label class="form-label mt-3">電話</label>
-            <input type="text" class="form-control" />
+            <input type="text" class="form-control" v-model="user.tel" />
           </div>
           <div class="col-12">
             <label class="form-label mt-3">電子郵件</label>
-            <input type="text" class="form-control" />
+            <input type="email" class="form-control" v-model="user.email" />
           </div>
 
           <!-- 送貨資訊 -->
@@ -40,6 +40,7 @@
                 type="checkbox"
                 value=""
                 id="flexCheckDefault"
+                @click="toggleInfo()"
               />
               <label class="form-check-label" for="flexCheckDefault">
                 同顧客資料
@@ -49,23 +50,33 @@
 
           <div class="col-6">
             <label class="form-label mt-3">收件人姓名</label>
-            <input type="text" class="form-control" />
+            <input type="text" class="form-control" v-model="receiver.name" />
 
             <label class="form-label mt-3">收件人電話</label>
-            <input type="text" class="form-control" />
+            <input type="text" class="form-control" v-model="receiver.tel" />
           </div>
           <div class="col-12">
             <label class="form-label mt-3">地址</label>
             <select
               class="form-select mb-3"
               aria-label="Default select example"
+              v-model="receiver.county"
             >
               <option selected>城市/ 縣</option>
-              <option v-for="(item, index) in county" :key="index">
+              <option
+                v-for="(item, index) in county"
+                :key="index"
+                :value="item"
+              >
                 {{ item }}
               </option>
             </select>
-            <input type="text " class="form-control" placeholder="地址" />
+            <input
+              type="text "
+              class="form-control"
+              placeholder="地址"
+              v-model="receiver.address"
+            />
           </div>
           <p class="fw-bold mt-5">付款資訊</p>
           <div class="form-text">
@@ -89,6 +100,7 @@
                 type="checkbox"
                 value=""
                 id="flexCheckDefault"
+                v-model="receiver.message"
               />
               <label class="form-check-label" for="flexCheckDefault">
                 我同意網站
@@ -101,7 +113,9 @@
             </div>
           </div>
         </div>
-        <router-link to="/order_list"><button>提交訂單</button></router-link>
+        <router-link to="/order_list"
+          ><button @click="sendOrder()">提交訂單</button></router-link
+        >
       </div>
     </div>
   </div>
@@ -134,7 +148,48 @@ export default {
         "新竹市",
         "嘉義市",
       ],
+      user: {
+        name: "李潔明",
+        email: "leeming413@gmail.com",
+        tel: "0933728990",
+      },
+      receiver: {
+        name: "",
+        tel: "",
+        county: "",
+        address: "板橋區四川路二段3號",
+        message: "",
+      },
+      checked: false,
     };
+  },
+  methods: {
+    sendOrder() {
+      const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_CUSTOM_PATH}/order`;
+      const orders = {
+        user: {
+          name: this.receiver.name,
+          email: this.user.email,
+          tel: this.receiver.tel,
+          address: this.county + this.address,
+          message: this.receiver.message,
+        },
+        message: "",
+      };
+      this.$http.post(url, { data: orders }).then(() => {
+      });
+    },
+    toggleInfo() {
+      if (!this.checked) {
+        this.checked = true;
+        this.receiver.name = this.user.name;
+        this.receiver.tel = this.user.tel;
+      } else {
+        this.checked = false;
+        this.receiver.name = "";
+        this.receiver.tel = "";
+      }
+    },
   },
 };
 </script>
