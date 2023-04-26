@@ -2,9 +2,8 @@
   <div style="background-color: #ec6d4e">
     <div class="container-fluid">
       <div class="container">
-        <loading v-model="isLoading" />
         <div class="text-end">
-          <button class="btn btn btn-outline-dark" @click="openModal(true)">
+          <button class="btn btn-dark rounded-pill" @click="openModal(true)">
             新增商品
           </button>
         </div>
@@ -42,7 +41,7 @@
               <td v-else class="text-center">未啟用</td>
               <td class="text-center">
                 <button
-                  class="btn btn-outline-primary btn-sm"
+                  class="btn btn-outline-dark rounded-pill"
                   @click="openModal(false, item)"
                 >
                   編輯
@@ -50,7 +49,7 @@
               </td>
               <td class="text-center">
                 <button
-                  class="btn btn-outline-primary btn-sm"
+                  class="btn btn-outline-danger rounded-pill"
                   @click="deleteProduct(item.id)"
                 >
                   刪除
@@ -60,48 +59,12 @@
           </tbody>
         </table>
         <!-- pagination -->
-        <!-- <PagiNation></PagiNation> -->
-        <div class="text-center">
-          <nav aria-label="Page navigation example">
-            <ul class="pagination">
-              <li class="page-item" :class="{ disabled: !pagination.has_pre }">
-                <a
-                  class="page-link"
-                  @click.prevent="getProducts(pagination.current_page - 1)"
-                  href="#"
-                  aria-label="Previous"
-                >
-                  <span aria-hidden="true">&laquo;</span>
-                </a>
-              </li>
-              <li
-                class="page-item"
-                v-for="page in pagination.total_pages"
-                :key="page"
-                :class="{ active: pagination.current_page == page }"
-              >
-                <a
-                  class="page-link"
-                  @click.prevent="getProducts(page)"
-                  href="#"
-                  >{{ page }}</a
-                >
-              </li>
-              <li class="page-item" :class="{ disabled: !pagination.has_next }">
-                <a
-                  class="page-link"
-                  @click.prevent="getProducts(pagination.current_page + 1)"
-                  href="#"
-                  aria-label="Next"
-                >
-                  <span aria-hidden="true">&raquo;</span>
-                </a>
-              </li>
-            </ul>
-          </nav>
-        </div>
+        <PagiNation
+          :pagination="pagination"
+          @getProducts="getProducts"
+        ></PagiNation>
 
-        <!-- 新增商品 modal -->
+        <!-- 新增商品 Modal -->
         <div
           class="modal fade"
           id="productModal"
@@ -244,12 +207,12 @@
 </template>
 
 <script>
-// import PagiNation from "@/components/PagiNation.vue";
+import PagiNation from "@/components/PagiNation.vue";
 
 import { Modal } from "bootstrap";
 export default {
   components: {
-    // PagiNation,
+    PagiNation,
   },
   data() {
     return {
@@ -269,8 +232,8 @@ export default {
     getProducts(page = 1) {
       const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_CUSTOM_PATH}/products?page=${page}`;
       this.$http.get(api).then((response) => {
+        // axios.put(url[, data[, config]])
         if (response.data.success) {
-          console.log("123", response);
           this.products = response.data.products;
           this.pagination = response.data.pagination;
         }
@@ -299,11 +262,8 @@ export default {
         (response) => {
           if (response.data.success) {
             this.myModal.hide();
-            this.getProducts();
-          } else {
-            this.getProducts();
-            console.log("新增失敗");
           }
+          this.getProducts();
           this.products = response.data.products;
         }
       );
@@ -320,7 +280,6 @@ export default {
           },
         })
         .then((response) => {
-          console.log(response.data);
           if (response.data.success) {
             // vm.$set(this.tempProduct, "imageUrl", response.data.imageUrl); << vue 2
             this.tempProduct.imageUrl = response.data.imageUrl; //<< vue 3
@@ -330,7 +289,7 @@ export default {
     deleteProduct(id) {
       const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_CUSTOM_PATH}/admin/product/${id}`;
       this.$http.delete(url).then((response) => {
-        console.log(response);
+        console.log("456", response);
       });
       this.getProducts();
     },
