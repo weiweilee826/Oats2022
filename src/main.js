@@ -57,11 +57,9 @@ document.title = "Oats";
 
 // vue router
 router.beforeEach((to, from, next) => {
-  console.log("to", to, "from", from);
   if (to.meta.requiresAuth) {
     const url = `${process.env.VUE_APP_API}/api/user/check`;
     axios.post(url).then((response) => {
-      console.log("check", response);
       if (response.data.success) {
         next();
       } else {

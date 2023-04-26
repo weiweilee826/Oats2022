@@ -18,7 +18,7 @@
             </select>
             <button
               class="btn btn btn-outline-dark"
-              @click="addToCart(product.id, qty)"
+              @click="addToCart(product.id)"
             >
               加入購物車
             </button>
@@ -59,7 +59,7 @@ export default {
   components: {},
   data() {
     return {
-      product: [],
+      product: { price: 0 },
       myModal: {},
       isNew: false,
       isLoading: false,
@@ -80,15 +80,14 @@ export default {
         }
       });
     },
-    addToCart(id, qty) {
+    addToCart(id) {
       const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_CUSTOM_PATH}/cart`;
-      console.log(id, qty);
       const cart = {
         product_id: id,
         qty: this.qty,
       };
       this.$http.post(url, { data: cart }).then((response) => {
-        console.log("a", response);
+        console.log("123", response);
       });
     },
   },

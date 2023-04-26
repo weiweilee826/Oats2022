@@ -101,8 +101,6 @@ export default {
     checkUser() {
       const api = `${process.env.VUE_APP_API}/api/user/check`;
       this.$http.post(api).then((response) => {
-        // console.log("ccc", response.data.success);
-
         if (response.data.success) {
           this.$store.state.adminAccess = true;
         } else {
