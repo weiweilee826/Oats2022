@@ -13,9 +13,6 @@
                 >所有商品</router-link
               >
             </li>
-            <!-- <li class="nav-item">
-              <router-link class="nav-link" to="/coupon">優惠券</router-link>
-            </li> -->
             <li class="nav-item">
               <router-link class="nav-link" to="/about_us"
                 >品牌故事</router-link
@@ -34,23 +31,23 @@
           <!-- admin -->
           <ul class="navbar-nav col-4" v-else>
             <li class="nav-item">
-              <router-link class="nav-link" to="/admin/product_list"
+              <router-link class="nav-link" to="/product_list"
                 >商品列表</router-link
               >
             </li>
             <li class="nav-item">
-              <router-link class="nav-link" to="/admin/order_list"
+              <router-link class="nav-link" to="/order_list"
                 >訂單列表</router-link
               >
             </li>
             <li class="nav-item">
-              <router-link class="nav-link" to="/admin/coupon"
-                >優惠券</router-link
-              >
+              <router-link class="nav-link" to="/coupon">優惠券</router-link>
             </li>
           </ul>
 
-          <a class="text-center navbar-brand me-0 justify-content-lg-center col-4" href="#"
+          <a
+            class="text-center navbar-brand me-0 justify-content-lg-center col-4"
+            href="#"
             ><router-link class="nav-link" to="/"
               ><img
                 src="../assets/images/icons/oats_logo.svg"
@@ -110,20 +107,12 @@ export default {
     checkUser() {
       const api = `${process.env.VUE_APP_API}/api/user/check`;
       this.$http.post(api).then((response) => {
-        console.log("ccc", response.data);
-        console.log("vuex", this.$store.state.adminAccess);
-
-        if (response.data.message == "請重新登入") {
-          this.$store.state.adminAccess = false;
-        } else {
-          this.$store.state.adminAccess = true;
-        }
-        console.log("vuex222", this.$store.state.adminAccess);
+        this.$store.state.adminAccess = response.data.success;
       });
     },
   },
   created() {
-    // this.checkUser();
+    this.checkUser();
   },
 };
 </script>
