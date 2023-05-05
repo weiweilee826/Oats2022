@@ -85,6 +85,20 @@ const routes = [
     name: "NewsPost3",
     component: () => import("../views/NewsPost3.vue"),
   },
+  {
+    path: "/FAQ",
+    name: "FAQ",
+    component: () => import("../views/FAQ.vue"),
+  },
+  {
+    path: "/contact_us",
+    name: "ContactUs",
+    component: () => import("../views/ContactUs.vue"),
+  },{
+    path: "/confirmed_order",
+    name: "ConfirmedOrder",
+    component: () => import("../views/ConfirmedOrder.vue"),
+  },
 ];
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
