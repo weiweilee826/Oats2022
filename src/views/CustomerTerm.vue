@@ -217,7 +217,7 @@
           <h5>第二十條 適用法律和約定的管轄權</h5>
 
           <p>
-            1. 本使用條款的適用法律為日本法律。<br />
+            1. 本使用條款的適用法律為台灣法律。<br />
             2.關於使用條款等與本服務相關的事項發生糾紛時，東京地方法院為第一審的專屬管轄法院。
           </p>
         </div>
@@ -226,7 +226,7 @@
         <router-link to="/"
           ><button
             type="button"
-            class="btn btn-outline-light btn-lg rounded-pill mt-5 fw-bold"
+            class="btn btn-outline-light rounded-pill mt-5 fw-bold"
           >
             回到首頁
           </button></router-link

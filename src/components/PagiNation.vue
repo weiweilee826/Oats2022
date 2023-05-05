@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="justify-content-center">
     <nav aria-label="Page navigation example">
       <ul class="pagination">
         <li class="page-item" :class="{ disabled: !pagination.has_pre }">
@@ -49,3 +49,8 @@ export default {
   },
 };
 </script>
+<style>
+nav {
+  margin: 0 auto;
+}
+</style>
