@@ -240,10 +240,10 @@
             </div>
 
             <div class="product-detail">
-              <h5>{{ products[0].title }}</h5>
+              <h5>【穀香燕麥餅乾】原味 30 片</h5>
               <h1>FruOats</h1>
-              <p>{{ $filters.currencyUSD(products[0].price) }}</p>
-              <router-link to="'/product/' + products"
+              <p>$685</p>
+              <router-link to="/product/-ND1HZac69wWXDANPFEl"
                 ><button
                   type="button"
                   class="btn btn-outline-light rounded-pill mt-5 fw-bold story-btn"
@@ -386,6 +386,10 @@ export default {
 }
 .og {
   color: #ec6d4e;
+}
+a {
+  text-decoration: none;
+  color: white;
 }
 /* ----------section 1 */
 .slider {

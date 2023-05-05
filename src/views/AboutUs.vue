@@ -79,6 +79,16 @@
           水果燕麥的特點是用富含膳食纖維的豆渣粉和燕麥代替小麥粉，用富含礦物質的本若糖（沖繩縣產甘蔗）代替白砂糖。通常缺乏的營養素可以與全燕麥一起美味地攝取。此外，它不使用小麥粉、雞蛋和乳製品，因此小麥過敏、雞蛋過敏和乳製品過敏的人也可以享用。全燕麥是一種美味的餅乾，我絕對會推薦給任何想輕鬆攝取膳食纖維的人。
         </p>
       </div>
+      <div class="text-center">
+        <router-link to="/"
+          ><button
+            type="button"
+            class="btn btn-outline-light rounded-pill mt-5 fw-bold"
+          >
+            回到首頁
+          </button></router-link
+        >
+      </div>
     </div>
   </div>
 </template>

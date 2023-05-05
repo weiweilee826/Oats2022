@@ -7,14 +7,18 @@
       <div class="d-flex justify-content-start">
         <ul class="nav col d-flex">
           <li class="nav-item">
-            <router-link class="nav-link" to="/">常見問題</router-link>
+            <router-link class="nav-link" to="/FAQ">常見問題</router-link>
           </li>
           <li class="nav-item">
-            <router-link class="nav-link" to="/">服務條款</router-link>
+            <router-link class="nav-link" to="/customer_term"
+              >服務條款</router-link
+            >
           </li>
 
           <li class="nav-item">
-            <router-link class="nav-link" to="/">聯絡我們</router-link>
+            <router-link class="nav-link" to="/contact_us"
+              >聯絡我們</router-link
+            >
           </li>
         </ul>
       </div>
@@ -29,17 +33,21 @@
                 alt=""
             /></router-link>
           </a>
-          <p class="mb-3 mb-md-0 text-white">&copy; 2022 FruOats</p>
+          <p class="mb-3 mb-md-0 text-white">
+            &copy; 2023 FruOats<br />本網站僅供個人作品使用，不提供商業用途
+          </p>
         </div>
 
         <ul class="nav col justify-content-end list-unstyled d-flex">
           <li class="ms-3">
-            <a class="text-muted" href="#">
+            <a class="text-muted" href="https://twitter.com/FruOatsOfficial">
               <img src="../assets/images/icons/twitter_logo.svg" alt="" />
             </a>
           </li>
           <li class="ms-3">
-            <a class="text-muted" href="#"
+            <a
+              class="text-muted"
+              href="https://www.instagram.com/fruoats_official/"
               ><img src="../assets/images/icons/instagram_logo.svg" alt=""
             /></a>
           </li>

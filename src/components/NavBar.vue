@@ -19,7 +19,9 @@
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link">最新消息</a>
+              <router-link class="nav-link" to="/latest_news"
+                >最新消息</router-link
+              >
             </li>
             <li class="nav-item">
               <router-link class="nav-link" to="/shop_info"
@@ -44,11 +46,11 @@
               <router-link class="nav-link" to="/coupon">優惠券</router-link>
             </li>
           </ul>
-
+          <!-- logo -->
           <a
             class="text-center navbar-brand me-0 justify-content-lg-center col-4"
             href="#"
-            ><router-link class="nav-link" to="/"
+            ><router-link class="nav-link" to="/" replace
               ><img
                 src="../assets/images/icons/oats_logo.svg"
                 alt="" /></router-link
@@ -62,14 +64,14 @@
             <button type="button" class="btn">
               <router-link class="nav-link" to="/login">登入</router-link>
             </button>
-            <button type="button" class="btn-cart">
+            <button type="button" class="btn">
               <router-link to="/cart"
-                ><font-awesome-icon icon="fa-solid fa-cart-shopping" />
+                ><font-awesome-icon
+                  icon="fa-solid fa-cart-shopping"
+                  style="color: #fff"
+                />
               </router-link>
             </button>
-            <!-- <button type="button" class="btn" @click="logout">
-              <router-link to="/">登出</router-link>
-            </button> -->
           </div>
           <!-- admin -->
           <div
@@ -133,13 +135,5 @@ export default {
 }
 .btn {
   color: white;
-}
-.btn-cart {
-  background-color: #fff;
-  border-radius: 100px;
-  width: 50px;
-  height: 50px;
-  border: none;
-  color: #ec6d4e;
 }
 </style>
