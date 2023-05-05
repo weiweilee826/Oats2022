@@ -12,17 +12,32 @@ import "bootstrap/dist/css/bootstrap.css";
 // icon
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-import { faSpinner } from "@fortawesome/free-solid-svg-icons";
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import {
+  faSpinner,
+  faTrash,
   faCartShopping,
   faUser,
   faChevronRight,
+  faChevronLeft,
 } from "@fortawesome/free-solid-svg-icons";
-library.add(faSpinner, faTrash, faCartShopping, faUser, faChevronRight);
+library.add(
+  faSpinner,
+  faTrash,
+  faCartShopping,
+  faUser,
+  faChevronRight,
+  faChevronLeft
+);
 
 import axios from "axios";
 import VueAxios from "vue-axios";
+
+import { defineRule } from "vee-validate";
+import { required, email, min } from "@vee-validate/rules";
+
+defineRule("required", required);
+defineRule("email", email);
+defineRule("min", min);
 
 const store = createStore({
   state() {
