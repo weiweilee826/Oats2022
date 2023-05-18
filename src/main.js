@@ -1,6 +1,6 @@
 import { createApp } from "vue";
 import App from "./App.vue";
-import router from "./router";
+import router from "./js";
 import { createStore } from "vuex";
 // import Vuex from "vuex";
 // import store from "./store";
@@ -32,17 +32,23 @@ library.add(
 import axios from "axios";
 import VueAxios from "vue-axios";
 
+//驗證
 import { defineRule } from "vee-validate";
-import { required, email, min } from "@vee-validate/rules";
+import { required, email } from "@vee-validate/rules";
 
 defineRule("required", required);
 defineRule("email", email);
-defineRule("min", min);
+
+import { LoadingPlugin } from "vue-loading-overlay";
+import "vue-loading-overlay/dist/css/index.css";
 
 const store = createStore({
   state() {
     return {
       adminAccess: false,
+      cartNum: 0,
+      customerInfo: {},
+      carts: [],
     };
   },
 });
@@ -53,6 +59,7 @@ app
   // .use(BootstrapVue3)
   .use(VueAxios, axios)
   .use(store)
+  .use(LoadingPlugin)
   //.provide("axios", app.config.globalProperties.axios)
   .component("font-awesome-icon", FontAwesomeIcon)
   .mount("#app");

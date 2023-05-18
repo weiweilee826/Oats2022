@@ -157,7 +157,8 @@
             <router-link to="/confirmed_order">
               <button
                 type="button"
-                class="btn btn-outline-dark rounded-pill text-end"
+                class="btn btn-outline-light text-center checkout"
+                @click="sendUser"
               >
                 提交訂單
               </button></router-link
@@ -217,22 +218,6 @@ export default {
     };
   },
   methods: {
-    sendOrder() {
-      // const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_CUSTOM_PATH}/order`;
-      console.log("1123");
-      // const orders = {
-      //   user: {
-      //     name: this.receiver.name,
-      //     email: this.user.email,
-      //     tel: this.receiver.tel,
-      //     address: this.county + this.address,
-      //     message: this.receiver.message,
-      //   },
-      //   message: "",
-      // };
-      // this.$http.post(url, { data: orders }).then(() => {
-      // });
-    },
     toggleInfo() {
       if (!this.checked) {
         this.checked = true;
@@ -246,6 +231,12 @@ export default {
     },
     onSubmit(value) {
       console.log("Submitted", value);
+    },
+    sendUser() {
+      this.$store.state.customerInfo = {
+        user: this.user,
+        receiver: this.receiver,
+      };
     },
   },
 };
@@ -330,5 +321,17 @@ a {
 .progress > li.is-active:before {
   color: #fff;
   background: #ec6d4e;
+}
+.checkout {
+  width: 100%;
+  height: 50px;
+  color: #fff;
+  font-weight: bold;
+  background-color: #ec6d4e;
+}
+.checkout:hover {
+  color: #fff;
+  background-color: #ec6d4e;
+  border: 2px solid #fff;
 }
 </style>

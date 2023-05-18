@@ -38,35 +38,35 @@
 
         <h5 class="fw-bold mt-5 border_b">顧客資訊</h5>
         <p>
-          姓名：李源 <br />
-          地址：東京都台東區1-1-1xx 泰壽公寓<br />
-          電話號碼：0162573524 <br />
-          郵箱地址：weiweilee826@gmail.com
+          姓名：{{ customerInfo.user.name }} <br />
+          電話號碼：{{ customerInfo.user.tel }}<br />
+          郵箱地址：{{ customerInfo.user.email }}
         </p>
+
         <h5 class="fw-bold mt-5 border_b">送貨資訊</h5>
         <p>
-          姓名：李源<br />
-          地址：東京都台東區1-1-1xx 泰壽公寓<br />
-          電話號碼：0162573524<br />
+          姓名：{{ customerInfo.receiver.name }}<br />
+          地址：{{ customerInfo.receiver.county + customerInfo.receiver.address
+          }}<br />
+          電話號碼：{{ customerInfo.receiver.tel }}<br />
         </p>
         <h5 class="fw-bold mt-5 border_b">付款資訊</h5>
         <p>
           銀行代號 國泰世華 (013) <br />
-          虛擬帳戶 2821238643109499 <br />
-          繳費金額(NTD) 3,800
+          虛擬帳戶 282123X643109X99 <br />
+          繳費金額(NTD) 3,800<br />
         </p>
 
         <div class="mt-5 text-center">
           <router-link to="/">
             <button
               type="button"
-              class="btn btn-outline-dark rounded-pill text-end"
+              class="btn btn-outline-light text-center checkout"
             >
               完成您的訂單
             </button></router-link
           >
         </div>
-        <div class="sendbtn"><a href="/">完成您的訂單</a></div>
       </div>
     </div>
   </div>
@@ -75,7 +75,10 @@
 export default {
   components: {},
   data() {
-    return {};
+    return {
+      customerInfo: {},
+      carts: [],
+    };
   },
   methods: {
     sendOrder() {
@@ -94,6 +97,12 @@ export default {
       // this.$http.post(url, { data: orders }).then(() => {
       // });
     },
+  },
+  created() {
+    // this.customerInfo = this.$store.state.customerInfo;
+    // this.carts = this.$store.state.carts;
+    // console.log("123", this.$store.state.customerInfo);
+    // console.log("456", this.$store.state.carts);
   },
 };
 </script>
@@ -204,5 +213,17 @@ td {
 .sendbtn > a {
   color: #fff;
   padding: 0 auto;
+}
+.checkout {
+  width: 100%;
+  height: 50px;
+  color: #fff;
+  font-weight: bold;
+  background-color: #ec6d4e;
+}
+.checkout:hover {
+  color: #fff;
+  background-color: #ec6d4e;
+  border: 2px solid #fff;
 }
 </style>
