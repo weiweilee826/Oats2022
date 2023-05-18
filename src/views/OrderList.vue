@@ -22,10 +22,7 @@
               <td v-if="item.is_paid">已付款</td>
               <td v-else>未付款</td>
               <td class="text-center">
-                <button
-                  class="btn btn-outline-dark rounded-pill"
-                  @click="openModal(item)"
-                >
+                <button class="btn btn-outline-dark" @click="openModal(item)">
                   編輯
                 </button>
               </td>
@@ -61,14 +58,15 @@
               <div class="col-8">
                 <div class="form-floating mb-3">
                   <input
-                    type="text"
+                    type="date"
                     class="form-control"
-                    id="floatingInput"
+                    id="date"
+                    name="date"
                     v-model="tempOrder.create_at"
                   />
                   <label for="floatingInput">購買時間</label>
                 </div>
-                <input type="date" class="form-control" id="date" name="date" v-model="tempOrder.create_at" />
+
                 <div class="col-6">
                   <div class="form-floating mb-3">
                     <input
@@ -150,12 +148,13 @@ export default {
     getOrderList(page = 1) {
       const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_CUSTOM_PATH}/orders?page=${page}`;
       this.$http.get(api).then((response) => {
-        console.log("getOrderList",response)
+        // console.log("getOrderList", response);
+        this.orders = [];
         for (let order of response.data.orders) {
           let myorder = {
             id: order.id,
             create_at: new Date(order.create_at).toLocaleString(),
-            email: order.user.email,
+            email: order.email,
             is_paid: order.is_paid,
             total: order.total,
           };
@@ -172,14 +171,14 @@ export default {
     },
     openModal(item) {
       this.tempOrder = Object.assign({}, item);
-      console.log('tempOrder',this.tempOrder);
+      // console.log("tempOrder", this.tempOrder);
       this.myModal.show();
     },
     updateOrder() {
       let api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_CUSTOM_PATH}/admin/order/${this.tempOrder.id}`;
 
       this.$http.put(api, { data: this.tempOrder }).then((response) => {
-        console.log("updateOrder", response);
+        // console.log("updateOrder", response);
         if (response.data.success) {
           this.myModal.hide();
           this.getOrderList();
@@ -192,7 +191,14 @@ export default {
     this.myModal = new Modal("#orderModal", {});
   },
   created() {
-    this.getOrderList();
+    const token = document.cookie.replace(
+      /(?:(?:^|.*;\s*)hexToken\s*=\s*([^;]*).*$)|^.*$/,
+      "$1"
+    );
+    if (token !== "") {
+      this.axios.defaults.headers.common["Authorization"] = token;
+      this.getOrderList();
+    }
   },
 };
 </script>
