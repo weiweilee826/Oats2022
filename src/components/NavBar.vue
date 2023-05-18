@@ -70,6 +70,12 @@
                   icon="fa-solid fa-cart-shopping"
                   style="color: #fff"
                 />
+                <span
+                  v-if="this.$store.state.cartNum"
+                  class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary"
+                >
+                  {{ this.$store.state.cartNum }}
+                </span>
               </router-link>
             </button>
           </div>
@@ -112,9 +118,16 @@ export default {
         this.$store.state.adminAccess = response.data.success;
       });
     },
+    getCart() {
+      const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_CUSTOM_PATH}/cart`;
+      this.$http.get(url).then((response) => {
+        this.$store.state.cartNum = response.data.data.carts.length;
+      });
+    },
   },
   created() {
     this.checkUser();
+    this.getCart();
   },
 };
 </script>
@@ -135,5 +148,8 @@ export default {
 }
 .btn {
   color: white;
+}
+span {
+  margin: 40px 0 0 -60px;
 }
 </style>
