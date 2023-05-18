@@ -3,7 +3,7 @@
     <div class="container-fluid">
       <div class="container">
         <div class="text-end">
-          <button class="btn btn-dark rounded-pill" @click="openModal(true)">
+          <button class="btn btn-dark" @click="openModal(true)">
             新增優惠券
           </button>
         </div>
@@ -23,13 +23,13 @@
             <tr v-for="item in coupons" :key="item.id" class="text-center">
               <td>{{ item.title }}</td>
               <td>{{ item.code }}</td>
-              <td>{{ item.percent +' %' }}</td>
+              <td>{{ item.percent + " %" }}</td>
               <td>{{ item.due_date }}</td>
               <td v-if="item.is_enabled">已啟用</td>
               <td v-else>未啟用</td>
               <td>
                 <button
-                  class="btn btn-outline-dark rounded-pill"
+                  class="btn btn-outline-dark"
                   @click="openModal(false, item)"
                 >
                   編輯
@@ -37,7 +37,7 @@
               </td>
               <td class="text-center">
                 <button
-                  class="btn btn-outline-danger rounded-pill"
+                  class="btn btn-outline-danger"
                   @click="deleteCoupon(item.id)"
                 >
                   刪除
@@ -108,10 +108,10 @@
 
                   <div class="form-floating mb-3">
                     <input
-                      type="text"
+                      type="date"
                       class="form-control"
-                      id="floatingPassword"
-                      placeholder="請輸入到期日"
+                      id="date"
+                      name="date"
                       v-model="tempCoupon.due_date"
                     />
                     <label for="floatingInput">到期日</label>

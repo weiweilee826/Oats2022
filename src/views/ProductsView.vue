@@ -1,11 +1,10 @@
 <template>
   <div style="background-color: #ec6d4e">
-    <loading :active="isLoading" />
     <div class="container content">
       <div class="container-md">
         <h1 class="title">PRODUCTS</h1>
 
-        <div class="row">
+        <div class="row cards">
           <template v-for="item in products">
             <div
               class="col"
@@ -42,7 +41,6 @@ export default {
       products: [],
       myModal: {},
       isNew: false,
-      isLoading: false,
       status: {
         fileUploading: false,
       },
@@ -51,10 +49,8 @@ export default {
   methods: {
     getProducts() {
       const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_CUSTOM_PATH}/products`;
-      this.isLoading = true;
       this.$http.get(api).then((response) => {
         if (response.data.success) {
-          this.isLoading = false;
           this.products = response.data.products;
         }
       });
@@ -65,10 +61,10 @@ export default {
       /(?:(?:^|.*;\s*)hexToken\s*=\s*([^;]*).*$)|^.*$/,
       "$1"
     );
-    if (token !== "") {
-      this.axios.defaults.headers.common["Authorization"] = token;
-      this.getProducts();
-    }
+    // if (token !== "") {
+    this.axios.defaults.headers.common["Authorization"] = token;
+    this.getProducts();
+    // }
   },
 };
 </script>
@@ -82,7 +78,6 @@ img {
   width: 228px;
 }
 h1 {
-  /* font-family: futura-pt, sans-serif; */
   font-weight: 500;
   font-style: normal;
   font-size: 50px;
@@ -93,5 +88,8 @@ h1 {
   margin: 0px auto 60px;
   padding-top: 100px;
   overflow: hidden;
+}
+.cards {
+  justify-content: flex-start;
 }
 </style>

@@ -1,6 +1,7 @@
 <template>
   <div>
     <div class="container-fluid p-0 index">
+
       <!-- section 1 -->
       <div class="slider-content">
         <div class="slider-text">
@@ -348,6 +349,7 @@
 <script>
 export default {
   name: "HomeView",
+  components: {},
   data() {
     return {
       products: [],

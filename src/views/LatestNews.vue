@@ -4,7 +4,7 @@
       <div class="container customer-card">
         <h1 class="title">NEWS</h1>
         <div class="news-content">
-          <table class="table text-white">
+          <table class="table text-white mb-0">
             <thead>
               <tr>
                 <th scope="col"></th>
@@ -13,7 +13,8 @@
               </tr>
             </thead>
             <tbody class="news-column">
-              <tr>
+              <tr class="">
+              
                 <th scope="row">2023.04.01</th>
                 <td>【從4/6開始數量有限】“FruOats”將開始銷售“素食巧克力”！</td>
                 <td>
@@ -21,6 +22,7 @@
                     ><font-awesome-icon icon="fa-solid fa-chevron-right"
                   /></router-link>
                 </td>
+                
               </tr>
               <tr>
                 <th scope="row">2023.03.21</th>
@@ -49,6 +51,9 @@
 </template>
 
 <style>
+.customer-card {
+  height: 521px;
+}
 h1 {
   font-weight: 500;
   font-style: normal;
@@ -78,4 +83,5 @@ a {
 table {
   margin: 0;
 }
+
 </style>

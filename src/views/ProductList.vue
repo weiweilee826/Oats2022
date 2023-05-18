@@ -3,7 +3,7 @@
     <div class="container-fluid">
       <div class="container">
         <div class="text-end">
-          <button class="btn btn-dark rounded-pill" @click="openModal(true)">
+          <button class="btn btn-dark" @click="openModal(true)">
             新增商品
           </button>
         </div>
@@ -41,7 +41,7 @@
               <td v-else class="text-center">未啟用</td>
               <td class="text-center">
                 <button
-                  class="btn btn-outline-dark rounded-pill"
+                  class="btn btn-outline-dark"
                   @click="openModal(false, item)"
                 >
                   編輯
@@ -49,7 +49,7 @@
               </td>
               <td class="text-center">
                 <button
-                  class="btn btn-outline-danger rounded-pill"
+                  class="btn btn-outline-danger"
                   @click="deleteProduct(item.id)"
                 >
                   刪除
@@ -190,7 +190,7 @@
               <div class="modal-footer">
                 <button
                   type="button"
-                  class="btn btn-primary"
+                  class="btn  btn-dark"
                   @click="updateProduct"
                 >
                   確認
@@ -220,7 +220,6 @@ export default {
       tempProduct: {},
       myModal: {},
       isNew: false,
-      isLoading: false,
       status: {
         fileUploading: false,
       },

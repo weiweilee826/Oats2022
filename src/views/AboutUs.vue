@@ -83,7 +83,7 @@
         <router-link to="/"
           ><button
             type="button"
-            class="btn btn-outline-light rounded-pill mt-5 fw-bold"
+            class="btn btn-outline-light checkout rounded-pill mt-5 fw-bold"
           >
             回到首頁
           </button></router-link
@@ -127,5 +127,17 @@ p {
   font-size: 16px;
   line-height: 1.9;
   font-weight: 700;
+}
+.checkout {
+  width: 200px;
+  height: 50px;
+  color: #fff;
+  font-weight: bold;
+  background-color: #ec6d4e;
+  border: 2px solid #fff;
+}
+.checkout:hover {
+  color: #ec6d4e;
+  background-color: #fff;
 }
 </style>

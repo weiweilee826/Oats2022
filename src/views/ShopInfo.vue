@@ -28,6 +28,16 @@
           </dl>
         </div>
       </div>
+      <div class="text-center">
+        <router-link to="/"
+          ><button
+            type="button"
+            class="btn btn-outline-light checkout rounded-pill mt-5 fw-bold"
+          >
+            回到首頁
+          </button></router-link
+        >
+      </div>
     </div>
   </div>
 </template>
@@ -41,7 +51,6 @@
   padding: 0px;
 }
 h1 {
-  /* font-family: futura-pt, sans-serif; */
   font-weight: 500;
   font-style: normal;
   font-size: 50px;
@@ -85,5 +94,17 @@ dt {
 }
 dd {
   font-weight: 700;
+}
+.checkout {
+  width: 200px;
+  height: 50px;
+  color: #fff;
+  font-weight: bold;
+  background-color: #ec6d4e;
+  border: 2px solid #fff;
+}
+.checkout:hover {
+  color: #ec6d4e;
+  background-color: #fff;
 }
 </style>

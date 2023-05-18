@@ -48,7 +48,7 @@
             </div>
             <div class="text-center">
               <button
-                class="w-50 btn btn-outline-dark rounded-pill mt-5"
+                class="w-50 btn btn-outline-light checkout rounded-pill mt-5"
                 type="submit"
               >
                 開始購物
@@ -60,7 +60,7 @@
           <h3 class="fw-bold text-center">註冊會員</h3>
           <div class="text-center">
             <button
-              class="w-50 btn btn-outline-dark rounded-pill mt-5"
+              class="w-50 btn btn-outline-light checkout rounded-pill mt-5"
               type="submit"
             >
               立即加入
@@ -126,5 +126,15 @@ h3 {
 }
 .progress {
   width: 300px;
+}.checkout {
+  height: 50px;
+  color: #fff;
+  font-weight: bold;
+  background-color: #ec6d4e;
+}
+.checkout:hover {
+  color: #fff;
+  background-color: #ec6d4e;
+  border: 2px solid #fff;
 }
 </style>
