@@ -1,5 +1,5 @@
 <template>
-  <div style="background-color: #ec6d4e">
+  
     <div class="container-fluid" style="padding-top: 200px">
       <div class="container customer-card">
         <h3 class="mb-1">發表於2023年3月號的雜誌《Ray》</h3>
@@ -20,7 +20,7 @@
         >
       </div>
     </div>
-  </div>
+
 </template>
 <style>
 h3 {

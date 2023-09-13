@@ -1,13 +1,11 @@
 import { createApp } from "vue";
 import App from "./App.vue";
-import router from "./js";
+import router from "./js/index.js";
 import { createStore } from "vuex";
 // import Vuex from "vuex";
 // import store from "./store";
 
-// import BootstrapVue3 from "bootstrap-vue-3";
 import "bootstrap/dist/css/bootstrap.css";
-// import "bootstrap-vue-3/dist/bootstrap-vue-3.css";
 
 // icon
 import { library } from "@fortawesome/fontawesome-svg-core";

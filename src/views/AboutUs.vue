@@ -1,5 +1,5 @@
 <template>
-  <div style="background-color: #ec6d4e">
+  <div>
     <img
       class="img-fluid"
       src="../assets/images/about_us/story-contents1.jpg"

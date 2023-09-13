@@ -1,5 +1,4 @@
-<template>
-  <div style="background-color: #ec6d4e">
+ <template>
     <div class="container-fluid">
       <div class="container">
         <table class="table mt-4">
@@ -125,7 +124,6 @@
         </div>
       </div>
     </div>
-  </div>
 </template>
 
 <script>

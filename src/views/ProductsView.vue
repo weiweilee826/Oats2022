@@ -1,5 +1,5 @@
 <template>
-  <div style="background-color: #ec6d4e">
+
     <div class="container content">
       <div class="container-md">
         <h1 class="title">PRODUCTS</h1>
@@ -7,7 +7,7 @@
         <div class="row cards">
           <template v-for="item in products">
             <div
-              class="col"
+              class=""
               style="width: 24%"
               v-if="item.is_enabled"
               :key="item.id"
@@ -29,7 +29,7 @@
         </div>
       </div>
     </div>
-  </div>
+
 </template>
 
 <script>
@@ -48,11 +48,17 @@ export default {
   },
   methods: {
     getProducts() {
-      const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_CUSTOM_PATH}/products`;
+      const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_CUSTOM_PATH}/products/all`;
+      // const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_CUSTOM_PATH}/products`;
       this.$http.get(api).then((response) => {
         if (response.data.success) {
           this.products = response.data.products;
         }
+        console.log("aaa", response);
+        // if (response.data.success) {
+        //   this.products = response.data.products;
+        // }
+        console.log(this.products);
       });
     },
   },
@@ -64,6 +70,7 @@ export default {
     // if (token !== "") {
     this.axios.defaults.headers.common["Authorization"] = token;
     this.getProducts();
+
     // }
   },
 };

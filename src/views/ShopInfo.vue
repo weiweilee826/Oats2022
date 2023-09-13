@@ -1,5 +1,5 @@
 <template>
-  <div style="background-color: #ec6d4e">
+
     <div class="container-fluid" style="padding-top: 100px">
       <h1 class="title">SHOP</h1>
       <div class="container customer-card">
@@ -39,7 +39,7 @@
         >
       </div>
     </div>
-  </div>
+
 </template>
 
 <style>

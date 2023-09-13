@@ -393,6 +393,10 @@ a {
   text-decoration: none;
   color: white;
 }
+/*  */
+
+
+
 /* ----------section 1 */
 .slider {
   /* border: 3px solid green; */

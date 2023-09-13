@@ -1,5 +1,5 @@
 <template>
-  <div style="background-color: #ec6d4e">
+
     <div class="container-fluid" style="padding-top: 200px">
       <div class="container customer-card">
         <h3 class="mb-1">【重要】運營公司變更、條款修改等通知</h3>
@@ -59,7 +59,7 @@
         >
       </div>
     </div>
-  </div>
+
 </template>
 <style>
 h3 {

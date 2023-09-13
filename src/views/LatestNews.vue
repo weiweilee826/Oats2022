@@ -1,5 +1,5 @@
 <template>
-  <div style="background-color: #ec6d4e">
+
     <div class="container-fluid" style="padding-top: 200px">
       <div class="container customer-card">
         <h1 class="title">NEWS</h1>
@@ -47,7 +47,7 @@
         </div>
       </div>
     </div>
-  </div>
+
 </template>
 
 <style>

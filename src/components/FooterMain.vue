@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid" style="background-color: #ec6d4e">
+  <div class="container-fluid">
     <!-- <footer
       class="d-flex flex-wrap justify-content-between align-items-start py-6"
     > -->

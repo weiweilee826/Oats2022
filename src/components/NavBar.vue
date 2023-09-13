@@ -61,14 +61,17 @@
             class="d-lg-flex col-lg-4 justify-content-lg-end btn_color col-4"
             v-if="!$store.state.adminAccess"
           >
-            <button type="button" class="btn">
+            <button type="button" class="btn login-btn">
               <router-link class="nav-link" to="/login">登入</router-link>
             </button>
-            <button type="button" class="btn">
+            <button
+              type="button"
+              class="btn btn-outline-light checkout-cart rounded-pill"
+            >
               <router-link to="/cart"
                 ><font-awesome-icon
                   icon="fa-solid fa-cart-shopping"
-                  style="color: #fff"
+                  style="color: #ec6d4e"
                 />
                 <span
                   v-if="this.$store.state.cartNum"
@@ -87,9 +90,6 @@
             <button type="button" class="btn" @click="logout">
               <router-link to="/">登出</router-link>
             </button>
-            <!-- <button type="button" class="btn">
-              <font-awesome-icon icon="fa-solid fa-user" />
-            </button> -->
           </div>
         </div>
       </div>
@@ -150,6 +150,14 @@ export default {
   color: white;
 }
 span {
-  margin: 40px 0 0 -60px;
+  margin: 35px 0 0 -55px;
+}
+.checkout-cart {
+  height: 44px;
+  width: 44px;
+  background-color: #fff;
+}
+.login-btn {
+  margin-right: 10px;
 }
 </style>

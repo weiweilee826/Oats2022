@@ -94,10 +94,16 @@ const routes = [
     path: "/contact_us",
     name: "ContactUs",
     component: () => import("../views/ContactUs.vue"),
-  },{
+  },
+  {
     path: "/confirmed_order",
     name: "ConfirmedOrder",
     component: () => import("../views/ConfirmedOrder.vue"),
+  },
+  {
+    path: "/order_done",
+    name: "OrderDone",
+    component: () => import("../views/OrderDone.vue"),
   },
 ];
 const router = createRouter({

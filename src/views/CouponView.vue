@@ -1,145 +1,139 @@
 <template>
-  <div style="background-color: #ec6d4e">
-    <div class="container-fluid">
-      <div class="container">
-        <div class="text-end">
-          <button class="btn btn-dark" @click="openModal(true)">
-            新增優惠券
-          </button>
-        </div>
-        <table class="table mt-4">
-          <thead>
-            <tr class="text-center">
-              <th>名稱</th>
-              <th>折扣碼</th>
-              <th>折扣百分比</th>
-              <th>到期日</th>
-              <th>是否啟用</th>
-              <th>編輯</th>
-              <th>刪除</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="item in coupons" :key="item.id" class="text-center">
-              <td>{{ item.title }}</td>
-              <td>{{ item.code }}</td>
-              <td>{{ item.percent + " %" }}</td>
-              <td>{{ item.due_date }}</td>
-              <td v-if="item.is_enabled">已啟用</td>
-              <td v-else>未啟用</td>
-              <td>
-                <button
-                  class="btn btn-outline-dark"
-                  @click="openModal(false, item)"
-                >
-                  編輯
-                </button>
-              </td>
-              <td class="text-center">
-                <button
-                  class="btn btn-outline-danger"
-                  @click="deleteCoupon(item.id)"
-                >
-                  刪除
-                </button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-
-        <!-- pagination -->
-        <PagiNation
-          :pagination="pagination"
-          @getProducts="getCoupons"
-        ></PagiNation>
+  <div class="container-fluid content">
+    <div class="container">
+      <div class="text-end">
+        <button class="btn btn-dark" @click="openModal(true)">
+          新增優惠券
+        </button>
       </div>
+      <table class="table mt-4">
+        <thead>
+          <tr class="text-center">
+            <th>名稱</th>
+            <th>折扣碼</th>
+            <th>折扣百分比</th>
+            <th>到期日</th>
+            <th>是否啟用</th>
+            <th>編輯</th>
+            <th>刪除</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="item in coupons" :key="item.id" class="text-center">
+            <td>{{ item.title }}</td>
+            <td>{{ item.code }}</td>
+            <td>{{ item.percent + " %" }}</td>
+            <td>{{ item.due_date }}</td>
+            <td v-if="item.is_enabled">已啟用</td>
+            <td v-else>未啟用</td>
+            <td>
+              <button
+                class="btn btn-outline-dark"
+                @click="openModal(false, item)"
+              >
+                編輯
+              </button>
+            </td>
+            <td class="text-center">
+              <button
+                class="btn btn-outline-danger"
+                @click="deleteCoupon(item.id)"
+              >
+                刪除
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
 
-      <!-- 新增優惠券 Modal -->
-      <div
-        class="modal fade"
-        id="couponModal"
-        tabindex="-1"
-        role="dialog"
-        aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog modal-lg" role="document">
-          <div class="modal-content border-0">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">
-                <span>新增優惠券</span>
-              </h5>
-            </div>
+      <!-- pagination -->
+      <PagiNation
+        :pagination="pagination"
+        @getProducts="getCoupons"
+      ></PagiNation>
+    </div>
 
-            <div class="modal-body row">
-              <div class="col-8">
+    <!-- 新增優惠券 Modal -->
+    <div
+      class="modal fade"
+      id="couponModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content border-0">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">
+              <span>新增優惠券</span>
+            </h5>
+          </div>
+
+          <div class="modal-body row">
+            <div class="col-8">
+              <div class="form-floating mb-3">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="floatingInput"
+                  placeholder="請輸入優惠券名稱"
+                  v-model="tempCoupon.title"
+                />
+                <label for="floatingInput">名稱</label>
+              </div>
+              <div class="col-6">
                 <div class="form-floating mb-3">
                   <input
                     type="text"
                     class="form-control"
                     id="floatingInput"
-                    placeholder="請輸入優惠券名稱"
-                    v-model="tempCoupon.title"
+                    placeholder="請輸入折扣碼"
+                    v-model="tempCoupon.code"
                   />
-                  <label for="floatingInput">名稱</label>
-                </div>
-                <div class="col-6">
-                  <div class="form-floating mb-3">
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="floatingInput"
-                      placeholder="請輸入折扣碼"
-                      v-model="tempCoupon.code"
-                    />
-                    <label for="floatingInput">折扣碼</label>
-                  </div>
-
-                  <div class="form-floating mb-3">
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="floatingInput"
-                      placeholder="請輸入折扣百分比"
-                      v-model="tempCoupon.percent"
-                    />
-                    <label for="floatingInput">折扣百分比</label>
-                  </div>
-
-                  <div class="form-floating mb-3">
-                    <input
-                      type="date"
-                      class="form-control"
-                      id="date"
-                      name="date"
-                      v-model="tempCoupon.due_date"
-                    />
-                    <label for="floatingInput">到期日</label>
-                  </div>
+                  <label for="floatingInput">折扣碼</label>
                 </div>
 
-                <div class="form-check form-switch text-start">
+                <div class="form-floating mb-3">
                   <input
-                    class="form-check-input"
-                    type="checkbox"
-                    id="flexSwitchCheckDefault"
-                    v-model="tempCoupon.is_enabled"
+                    type="text"
+                    class="form-control"
+                    id="floatingInput"
+                    placeholder="請輸入折扣百分比"
+                    v-model="tempCoupon.percent"
                   />
-                  <label class="form-check-label" for="flexSwitchCheckDefault"
-                    >是否啟用</label
-                  >
+                  <label for="floatingInput">折扣百分比</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                  <input
+                    type="date"
+                    class="form-control"
+                    id="date"
+                    name="date"
+                    v-model="tempCoupon.due_date"
+                  />
+                  <label for="floatingInput">到期日</label>
                 </div>
               </div>
+
+              <div class="form-check form-switch text-start">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="flexSwitchCheckDefault"
+                  v-model="tempCoupon.is_enabled"
+                />
+                <label class="form-check-label" for="flexSwitchCheckDefault"
+                  >是否啟用</label
+                >
+              </div>
             </div>
-            <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-primary"
-                @click="updateCoupon"
-              >
-                確認
-              </button>
-            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" @click="updateCoupon">
+              確認
+            </button>
           </div>
         </div>
       </div>

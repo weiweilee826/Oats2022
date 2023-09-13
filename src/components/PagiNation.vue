@@ -1,7 +1,7 @@
 <template>
-  <div class="justify-content-center">
-    <nav aria-label="Page navigation example">
-      <ul class="pagination">
+  <div class="outer">
+    <nav aria-label="Page navigation example ">
+      <ul class="pagination bg-oats">
         <li class="page-item" :class="{ disabled: !pagination.has_pre }">
           <a
             class="page-link"
@@ -50,7 +50,18 @@ export default {
 };
 </script>
 <style>
+.outer {
+  display: flex;
+}
 nav {
   margin: 0 auto;
+}
+.page-link.active,
+.active > .page-link {
+  background-color: #ec6d4e;
+  border-color: #ec6d4e;
+}
+.page-link {
+  color: #ec6d4e;
 }
 </style>

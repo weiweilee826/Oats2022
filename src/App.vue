@@ -1,7 +1,8 @@
 <template>
-  <NavBar />
-  <router-view />
-  <FooterMain />
+    <NavBar />
+    <router-view />
+    <FooterMain />
+
 </template>
 
 <script>
@@ -14,16 +15,18 @@ export default {
     NavBar,
     FooterMain,
   },
+
+  beforeCreate() {
+    document
+      .querySelector("body")
+      .setAttribute("style", "background-color:#ec6d4e");
+  },
+
+  beforeUnmount() {
+    document.querySelector("body").removeAttribute("style");
+  },
 };
 </script>
 
 <style>
-/* #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-} */
 </style>

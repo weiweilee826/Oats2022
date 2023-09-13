@@ -1,6 +1,5 @@
 <template>
-  <div style="background-color: #ec6d4e">
-    <div class="container-fluid">
+    <div class="container-fluid content">
       <div class="container">
         <div class="text-end">
           <button class="btn btn-dark" @click="openModal(true)">
@@ -47,6 +46,7 @@
                   編輯
                 </button>
               </td>
+
               <td class="text-center">
                 <button
                   class="btn btn-outline-danger"
@@ -65,6 +65,7 @@
         ></PagiNation>
 
         <!-- 新增商品 Modal -->
+
         <div
           class="modal fade"
           id="productModal"
@@ -190,7 +191,7 @@
               <div class="modal-footer">
                 <button
                   type="button"
-                  class="btn  btn-dark"
+                  class="btn btn-dark"
                   @click="updateProduct"
                 >
                   確認
@@ -203,7 +204,6 @@
         <!-- 確認刪除 modal -->
       </div>
     </div>
-  </div>
 </template>
 
 <script>
@@ -316,4 +316,7 @@ export default {
   background-color: white;
   padding: 50px;
 }
+/* .content {
+  height: 66vh;
+} */
 </style>

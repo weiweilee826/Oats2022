@@ -1,5 +1,5 @@
 <template>
-  <div style="background-color: #ec6d4e">
+
     <div class="container content">
       <div class="product-content rounded">
         <div class="row">
@@ -9,7 +9,7 @@
           </div>
           <div class="col text-start mb-5">
             <h4 class="fw-bold">{{ product.title }}</h4>
-            <h5>{{ $filters.currencyUSD(product.price) }}</h5>
+            <h5 class="mt-3">{{ $filters.currencyUSD(product.price) }}</h5>
             <select
               class="form-select my-4"
               aria-label="Default select example"
@@ -304,7 +304,7 @@
         </div>
       </div>
     </div>
-  </div>
+
 </template>
 
 <script>
@@ -331,7 +331,7 @@ export default {
   methods: {
     async addToCart() {
       if (this.foundCartProd) deleteCart(this.foundCartProd.id);
-      if (await addToCart(this.id, this.foundCartProd.qty+this.qty)) {
+      if (await addToCart(this.id, this.foundCartProd.qty + this.qty)) {
         this.getCart();
       }
     },
@@ -406,5 +406,8 @@ p {
   color: #fff;
   background-color: #ec6d4e;
   border: 2px solid #fff;
+}
+h5 {
+  font-weight: 900;
 }
 </style>

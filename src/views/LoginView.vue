@@ -1,6 +1,5 @@
 <template>
   <div>
-    <div style="background-color: #ec6d4e">
       <div class="container-fluid" style="padding-top: 50px">
         <div class="customer-card container">
           <h3 class="fw-bold text-center">會員登入</h3>
@@ -72,7 +71,7 @@
         </div>
       </div>
     </div>
-  </div>
+
 </template>
 <script>
 export default {

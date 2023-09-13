@@ -1,5 +1,5 @@
 <template>
-  <div style="background-color: #ec6d4e">
+
     <div class="container-fluid">
       <div class="customer-card container">
         <h4 class="fw-bold text-center">輸入您的訂單資料</h4>
@@ -8,8 +8,8 @@
 
         <ul class="progress">
           <li class="is-complete">訂單資訊</li>
-          <li>確認繳費</li>
-          <li class="progress__last">訂單完成</li>
+          <li>確認</li>
+          <li class="progress__last">訂單</li>
         </ul>
 
         <!--  -->
@@ -154,20 +154,20 @@
             </div>
           </div>
           <div class="mt-5 text-center">
-            <router-link to="/confirmed_order">
-              <button
-                type="button"
-                class="btn btn-outline-light text-center checkout"
-                @click="sendUser"
-              >
-                提交訂單
-              </button></router-link
+            <!-- <router-link to="/confirmed_order"> -->
+            <button
+              type="submit"
+              class="btn btn-outline-light text-center checkout"
+              @click="sendUser"
             >
+              提交訂單
+            </button>
+            <!-- </router-link> -->
           </div>
         </Form>
       </div>
     </div>
-  </div>
+
 </template>
 <script>
 import { Form, Field } from "vee-validate";
@@ -229,14 +229,17 @@ export default {
         this.receiver.tel = "";
       }
     },
-    onSubmit(value) {
-      console.log("Submitted", value);
-    },
-    sendUser() {
-      this.$store.state.customerInfo = {
-        user: this.user,
-        receiver: this.receiver,
-      };
+    onSubmit() {
+      localStorage.setItem(
+        "customerInfo",
+        JSON.stringify(
+          (this.$store.state.customerInfo = {
+            user: this.user,
+            receiver: this.receiver,
+          })
+        )
+      );
+      this.$router.push("/confirmed_order");
     },
   },
 };
@@ -264,6 +267,7 @@ a {
   font-size: 11px;
   margin-left: 5px;
 }
+/* 進度條 */
 .progress {
   list-style: none;
   padding: 40px;
@@ -279,20 +283,22 @@ a {
   font-size: 12pt;
   font-weight: 700;
 }
+/* 圓圈 */
 .progress > li:before {
   content: "";
+  position: relative;
   display: block;
-  margin: 0 auto;
   background: #dfe3e4;
   width: 0.8em;
   height: 0.8em;
-  text-align: center;
+  margin: 0 auto;
   margin-bottom: 0.25em;
+  text-align: center;
   line-height: 3em;
   border-radius: 100%;
-  position: relative;
   z-index: 1000;
 }
+/* 左線 */
 .progress > li:after {
   content: "";
   position: absolute;
@@ -301,12 +307,14 @@ a {
   width: 100%;
   height: 0.1em;
   top: 0.4em;
-  left: 50%;
+  right: 50%;
   z-index: 0;
 }
-.progress > li:last-child:after {
+/* 消除尾線 */
+.progress > li:first-child:after {
   display: none;
 }
+/* 字變色 */
 .progress > li.is-complete {
   color: #ec6d4e;
 }
@@ -315,13 +323,13 @@ a {
   color: #fff;
   background: #ec6d4e;
 }
-.progress > li.is-active {
+/* .progress > li.is-active {
   color: #dfe3e4;
 }
 .progress > li.is-active:before {
   color: #fff;
-  background: #ec6d4e;
-}
+  background: #ec6d4e; 
+} */
 .checkout {
   width: 100%;
   height: 50px;
