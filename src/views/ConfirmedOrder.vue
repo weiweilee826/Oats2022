@@ -82,25 +82,25 @@ export default {
   },
   methods: {
     sendOrder() {
-      // const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_CUSTOM_PATH}/order`;
-      console.log("1123");
-      // const orders = {
-      //   user: {
-      //     name: this.receiver.name,
-      //     email: this.user.email,
-      //     tel: this.receiver.tel,
-      //     address: this.county + this.address,
-      //     message: this.receiver.message,
-      //   },
-      //   message: "",
-      // };
-      // this.$http.post(url, { data: orders }).then(() => {
-      // });
+      //console.log("1123");
+      const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_CUSTOM_PATH}/order`;
+      const orders = {
+        user: {
+          name: this.receiver.name,
+          email: this.user.email,
+          tel: this.receiver.tel,
+          address: this.county + this.address,
+          message: this.receiver.message,
+        },
+        message: "",
+      };
+      this.$http.post(url, { data: orders }).then(() => {
+      });
     },
   },
   created() {
-    // this.customerInfo = this.$store.state.customerInfo;
-    // this.carts = this.$store.state.carts;
+    this.customerInfo = this.$store.state.customerInfo;
+    this.carts = this.$store.state.carts;
     // console.log("123", this.$store.state.customerInfo);
     // console.log("456", this.$store.state.carts);
   },
